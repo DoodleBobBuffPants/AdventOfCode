@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "Run",
+            "type": "dotnet",
+            "environment": { "SAMPLE": "false" },
+            "workingDir": "./2022",
+            "projectPath": "./AdventOfCode.csproj",
+            "exePath": "./bin/Debug/net6.0/AdventOfCode.exe",
+            "args": []
+        },
+        {
+            "name": "Run (Sample)",
+            "type": "dotnet",
+            "environment": { "SAMPLE": "true" },
+            "workingDir": "./2022",
+            "projectPath": "./AdventOfCode.csproj",
+            "exePath": "./bin/Debug/net6.0/AdventOfCode.exe",
+            "args": []
+        }
+    ]
+}
