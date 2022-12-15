@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using AdventOfCode.Puzzle;
 
-var day = new Day9();
+var day = new Day10();
 Console.WriteLine($"Part 1: {Profile(day.Part1)}ms");
 Console.WriteLine();
 Console.WriteLine($"Part 2: {Profile(day.Part2)}ms");
