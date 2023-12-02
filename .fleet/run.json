@@ -1,6 +1,20 @@
 {
   "configurations": [
     {
+      "name": "Run 2023",
+      "type": "gradle",
+      "environment": { "SAMPLE": "false" },
+      "workingDir": "./2023",
+      "tasks": [":run"],
+    },
+    {
+      "name": "Run 2023 (Sample)",
+      "type": "gradle",
+      "environment": { "SAMPLE": "true" },
+      "workingDir": "./2023",
+      "tasks": [":run"],
+    },
+    {
       "name": "Run 2022",
       "type": "dotnet",
       "environment": { "SAMPLE": "false" },
