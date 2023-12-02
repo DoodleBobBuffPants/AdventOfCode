@@ -11,7 +11,7 @@ public class Day12 : IDay
         var map = IDay.ReadResource(12).Select(r => r.Select(c => new Cell(c)).ToList()).ToList();
         var end = GetEnd(map);
         map[end.x][end.y].DistanceToEnd = 0;
-        var frontier = new List<(int x, int y)>() { (end.x, end.y) };
+        var frontier = new List<(int x, int y)> { (end.x, end.y) };
         while (frontier.Any())
         {
             var current = frontier[0];
@@ -40,7 +40,7 @@ public class Day12 : IDay
 
     private List<(int x, int y)> GetNeighbours((int x, int y) cell, List<List<Cell>> map)
     {
-        var neighbours = new List<(int x, int y)>() { (cell.x-1, cell.y), (cell.x+1, cell.y), (cell.x, cell.y-1), (cell.x, cell.y+1) };
+        var neighbours = new List<(int x, int y)> { (cell.x-1, cell.y), (cell.x+1, cell.y), (cell.x, cell.y-1), (cell.x, cell.y+1) };
         return neighbours.Where(n => n.x >= 0 && n.x < map.Count && n.y >= 0 && n.y < map[0].Count).ToList();
     }
 

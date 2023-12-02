@@ -47,7 +47,7 @@ public class Day16 : IDay
 
     private void UpdateMemo(Dictionary<HashSet<string>, int> memo, int flow, HashSet<string> visited)
     {
-        var key = visited.Except(new HashSet<string>() { "AA" }).ToHashSet();
+        var key = visited.Except(new HashSet<string> { "AA" }).ToHashSet();
         if (memo.ContainsKey(key))
         {
             if (flow > memo[key]) memo[key] = flow;
@@ -58,7 +58,7 @@ public class Day16 : IDay
     private (Dictionary<string, Dictionary<string, int>>, Dictionary<string, (int rate, List<string> neighbours)>) ParseInput()
     {
         var valves = IDay.ReadResource(16)
-                         .Select(x => Regex.Match(x, @"Valve (.*) has flow rate=(.*); tunnels? leads? to valves? (.*)").Groups)
+                         .Select(x => Regex.Match(x, "Valve (.*) has flow rate=(.*); tunnels? leads? to valves? (.*)").Groups)
                          .Select(x => (id: x[1].Value, rate: int.Parse(x[2].Value), neighbours: x[3].Value.Split(",").Select(y => y.Trim()).ToList()))
                          .ToDictionary(x => x.id, x => (x.rate, x.neighbours));
         return (AllShortestPaths(valves), valves);

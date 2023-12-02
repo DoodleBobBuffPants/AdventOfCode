@@ -19,12 +19,12 @@ public class Day11 : IDay
 
     private List<Monkey> ConstructSampleMonkeys()
     {
-        var monkeys = new List<Monkey>()
+        var monkeys = new List<Monkey>
         {
-            new Monkey(new() { 79, 98 }, 23, x => x * 19),
-            new Monkey(new() { 54, 65, 75, 74 }, 19, x => x + 6),
-            new Monkey(new() { 79, 60, 97 }, 13, x => x * x),
-            new Monkey(new() { 74 }, 17, x => x + 3)
+            new(new() { 79, 98 }, 23, x => x * 19),
+            new(new() { 54, 65, 75, 74 }, 19, x => x + 6),
+            new(new() { 79, 60, 97 }, 13, x => x * x),
+            new(new() { 74 }, 17, x => x + 3)
         };
         monkeys[0].SetThrowMonkeys(monkeys[2], monkeys[3]);
         monkeys[1].SetThrowMonkeys(monkeys[2], monkeys[0]);
@@ -35,16 +35,16 @@ public class Day11 : IDay
 
     private List<Monkey> ConstructMonkeys()
     {
-        var monkeys = new List<Monkey>()
+        var monkeys = new List<Monkey>
         {
-            new Monkey(new() { 85, 77, 77 }, 19, x => x * 7),
-            new Monkey(new() { 80, 99 }, 3, x => x * 11),
-            new Monkey(new() { 74, 60, 74, 63, 86, 92, 80 }, 13, x => x + 8),
-            new Monkey(new() { 71, 58, 93, 65, 80, 68, 54, 71 }, 7, x => x + 7),
-            new Monkey(new() { 97, 56, 79, 65, 58 }, 5, x => x + 5),
-            new Monkey(new() { 77 }, 11, x => x + 4),
-            new Monkey(new() { 99, 90, 84, 50 }, 17, x => x * x),
-            new Monkey(new() { 50, 66, 61, 92, 64, 78 }, 2, x => x + 3)
+            new(new() { 85, 77, 77 }, 19, x => x * 7),
+            new(new() { 80, 99 }, 3, x => x * 11),
+            new(new() { 74, 60, 74, 63, 86, 92, 80 }, 13, x => x + 8),
+            new(new() { 71, 58, 93, 65, 80, 68, 54, 71 }, 7, x => x + 7),
+            new(new() { 97, 56, 79, 65, 58 }, 5, x => x + 5),
+            new(new() { 77 }, 11, x => x + 4),
+            new(new() { 99, 90, 84, 50 }, 17, x => x * x),
+            new(new() { 50, 66, 61, 92, 64, 78 }, 2, x => x + 3)
         };
         monkeys[0].SetThrowMonkeys(monkeys[6], monkeys[7]);
         monkeys[1].SetThrowMonkeys(monkeys[3], monkeys[5]);

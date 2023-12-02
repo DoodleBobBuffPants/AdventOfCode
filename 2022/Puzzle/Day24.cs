@@ -21,7 +21,7 @@ public class Day24 : IDay
     private int Blizzard((int r, int c, int t) s, (int r, int c) t, Dictionary<int, HashSet<(int, int, char)>> blizzards, int rows, int columns)
     {
         var visited = new HashSet<(int, int, int)>();
-        var frontier = new HashSet<(int r, int c, int t)>() { s };
+        var frontier = new HashSet<(int r, int c, int t)> { s };
         var result = int.MaxValue;
         while (frontier.Any())
         {
@@ -43,9 +43,9 @@ public class Day24 : IDay
     private HashSet<(int r, int c, int t)> GetMoves((int r, int c, int t) p, (int r, int c) t, HashSet<(int r, int c, char)> blizzard, int min, int rows, int columns)
     {
         if (Math.Abs(t.r-p.r) + Math.Abs(t.c-p.c) + p.t >= min) return new();
-        if (p. r == -1 && p.c == 0) return new() { (p.r+1, p.c, p.t+1), (p.r, p.c, p.t+1) };
+        if (p is { r: -1, c: 0 }) return new() { (p.r+1, p.c, p.t+1), (p.r, p.c, p.t+1) };
         if (p. r == rows && p.c == columns-1) return new() { (p.r-1, p.c, p.t+1), (p.r, p.c, p.t+1) };
-        var neighbours = new HashSet<(int r, int c, int)>() { (p.r-1, p.c, p.t+1), (p.r+1, p.c, p.t+1), (p.r, p.c-1, p.t+1), (p.r, p.c+1, p.t+1), (p.r, p.c, p.t+1) };
+        var neighbours = new HashSet<(int r, int c, int)> { (p.r-1, p.c, p.t+1), (p.r+1, p.c, p.t+1), (p.r, p.c-1, p.t+1), (p.r, p.c+1, p.t+1), (p.r, p.c, p.t+1) };
         return neighbours.Where(x => x.r >= 0 && x.r < rows && x.c >= 0 && x.c < columns && !blizzard.Contains((x.r, x.c, '^')) && !blizzard.Contains((x.r, x.c, '>')) && !blizzard.Contains((x.r, x.c, 'v')) && !blizzard.Contains((x.r, x.c, '<'))).ToHashSet();
     }
 

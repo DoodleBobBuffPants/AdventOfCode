@@ -32,7 +32,7 @@ public class Day5 : IDay
         var lines = IDay.ReadResource(5);
         var puzzle = lines.TakeWhile(x => !string.IsNullOrWhiteSpace(x)).ToList();
         var boxes = GetBoxes(int.Parse(puzzle.Last().Trim().Split(" ").Last()), puzzle.SkipLast(1).ToList());
-        var operations = GetParsedOperations(lines.Skip(puzzle.Count() + 1)).ToList();
+        var operations = GetParsedOperations(lines.Skip(puzzle.Count + 1)).ToList();
         return (boxes, operations);
     }
 
@@ -41,7 +41,7 @@ public class Day5 : IDay
         var boxes = Enumerable.Repeat(0, size).Select(_ => new Stack<char>()).ToList();
         for (var col = 1; col < arrangement[0].Length; col += 4)
         {
-            Enumerable.Range(0, arrangement.Count()).Reverse()
+            Enumerable.Range(0, arrangement.Count).Reverse()
                       .Select(x => arrangement[x][col])
                       .Where(char.IsLetter)
                       .ToList().ForEach(x => boxes[col/4].Push(x));

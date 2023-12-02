@@ -9,7 +9,7 @@ public class Day10 : IDay
     private int SignalStrength()
     {
         var operations = IDay.ReadResource(10);
-        var significantCycles = new List<int>() { 20, 60, 100, 140, 180, 220 };
+        var significantCycles = new List<int> { 20, 60, 100, 140, 180, 220 };
         var x = 1;
         var cycle = 0;
         var result = 0;

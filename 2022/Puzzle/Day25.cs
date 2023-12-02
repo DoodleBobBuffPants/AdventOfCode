@@ -12,10 +12,10 @@ public class Day25 : IDay
     {
         var result = "";
         var power = 1L;
-        while (((power*5)/2) < number) power *= 5;
+        while (power*5/2 < number) power *= 5;
         for (; power > 0; power /= 5)
         {
-            var digit = Enumerable.Range(-2, 5).First(x => number-(power*x) <= power/2);
+            var digit = Enumerable.Range(-2, 5).First(x => number-power*x <= power/2);
             number -= digit*power;
             result += SnafuFromDecimal(digit);
         }

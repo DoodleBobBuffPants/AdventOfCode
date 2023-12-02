@@ -65,7 +65,7 @@ public class Day7 : IDay
                 var (fileSize, fileName) = (int.Parse(line.Split(" ")[0]), line.Split(" ")[1]);
                 if (!directory.ContainsKey(fileName))
                 {
-                    directory[fileName] = new Directory() { Size = fileSize, Parent = directory };
+                    directory[fileName] = new Directory { Size = fileSize, Parent = directory };
                     for (var currentDirectory = directory; currentDirectory != null; currentDirectory = currentDirectory.Parent) currentDirectory.Size += fileSize;
                 }
             }

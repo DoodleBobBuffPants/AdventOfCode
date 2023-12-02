@@ -31,7 +31,7 @@ public class Day17 : IDay
         private long _rockHeight = -1;
         private int _preCycleHeight;
         private Rock _rock = new(Rock.RockType.Dash);
-        private readonly Jet _jet = new Jet();
+        private readonly Jet _jet = new();
         private readonly Dictionary<(Rock.RockType, int, int, int, int, int, int, int, int, int), (long, int)> _cycleCache = new();
 
         public long GetRockHeight() => (_rockHeight == -1 ? Height : _rockHeight + (Height-_preCycleHeight)) + 1;
@@ -56,7 +56,7 @@ public class Day17 : IDay
             var heightPerCycle = Height - oldHeight;
             var cyclesRemaining = (limit-rocks) / rocksPerCycle;
             var rocksSkipped = cyclesRemaining * rocksPerCycle;
-            _rockHeight = Height + (heightPerCycle * cyclesRemaining);
+            _rockHeight = Height + heightPerCycle * cyclesRemaining;
             _preCycleHeight = Height;
             return rocksSkipped;
         }

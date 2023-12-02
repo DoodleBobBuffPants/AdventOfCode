@@ -23,7 +23,7 @@ public class Day22 : IDay
             }
             d = (Direction) (((int) d + (rotation == 'R' ? 1 : rotation == 'L' ? 3 : 0)) % 4);
         }
-        return (1000*(r+1)) + (4*(c+1)) + (int) d;
+        return 1000*(r+1) + 4*(c+1) + (int) d;
     }
 
     private ((int, int), Direction) GetNextPositionOnCube((int r, int c) p, Direction d, int faceLength)
@@ -136,8 +136,8 @@ public class Day22 : IDay
         // 234    3
         //   56  45
         //        6
-        if (faceLength == 4) return (4*(p.r/4) + (p.c/4)) switch { 2 => 1, 4 => 2, 5 => 3, 6 => 4, 10 => 5, 11 => 6 };
-        return (3*(p.r/50) + (p.c/50)) switch { 1 => 1, 2 => 2, 4 => 3, 6 => 4, 7 => 5, 9 => 6 };
+        if (faceLength == 4) return (4*(p.r/4) + p.c/4) switch { 2 => 1, 4 => 2, 5 => 3, 6 => 4, 10 => 5, 11 => 6 };
+        return (3*(p.r/50) + p.c/50) switch { 1 => 1, 2 => 2, 4 => 3, 6 => 4, 7 => 5, 9 => 6 };
     }
 
     private (int dr, int dc) GetDelta(Direction d) => d switch { Direction.R => (0, 1), Direction.D => (1, 0), Direction.L => (0, -1), Direction.U => (-1, 0) };

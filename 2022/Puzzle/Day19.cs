@@ -17,7 +17,7 @@ public class Day19 : IDay
         {
             var golem = Geodude(blueprint, time);
             Console.WriteLine($"Blueprint {blueprint.Id}: {golem} geodes");
-            result = part2 ? result * golem : result + (golem * blueprint.Id);
+            result = part2 ? result * golem : result + golem * blueprint.Id;
         }
         return result;
     }
@@ -26,7 +26,7 @@ public class Day19 : IDay
     {
         var golem = 0;
         var visited = new HashSet<State>();
-        var frontier = new HashSet<State>() { new State(1, 0, 0, 0, 0, 0, 0, 0, minutes) };
+        var frontier = new HashSet<State> { new(1, 0, 0, 0, 0, 0, 0, 0, minutes) };
         while (frontier.Count > 0)
         {
             var current = frontier.First();
@@ -44,7 +44,7 @@ public class Day19 : IDay
 
         if (state.Time == 0) return gravelers;
 
-        var possibleGeodes = state.Geode + (state.GeodeRobots * state.Time) + Enumerable.Range(0, state.Time).Sum();
+        var possibleGeodes = state.Geode + state.GeodeRobots * state.Time + Enumerable.Range(0, state.Time).Sum();
         if (possibleGeodes <= golem) return gravelers;
 
         if (CanMakeGeodeRobot(blueprint, state)) gravelers.Add(MakeGeodeRobot(blueprint, state));
@@ -60,16 +60,16 @@ public class Day19 : IDay
     }
 
     private bool CanMakeGeodeRobot(Blueprint blueprint, State state) => state.Ore >= blueprint.GeodeRobot.OreCost && state.Obsidian >= blueprint.GeodeRobot.ObsidianCost;
-    private State MakeGeodeRobot(Blueprint blueprint, State state) => new State(state.OreRobots, state.ClayRobots, state.ObsidianRobots, state.GeodeRobots+1, state.Ore-blueprint.GeodeRobot.OreCost, state.Clay, state.Obsidian-blueprint.GeodeRobot.ObsidianCost, state.Geode, state.Time);
+    private State MakeGeodeRobot(Blueprint blueprint, State state) => new(state.OreRobots, state.ClayRobots, state.ObsidianRobots, state.GeodeRobots+1, state.Ore-blueprint.GeodeRobot.OreCost, state.Clay, state.Obsidian-blueprint.GeodeRobot.ObsidianCost, state.Geode, state.Time);
 
     private bool CanMakeObsidianRobot(Blueprint blueprint, State state) => state.Ore >= blueprint.ObsidianRobot.OreCost && state.Clay >= blueprint.ObsidianRobot.ClayCost && state.ObsidianRobots < blueprint.GeodeRobot.ObsidianCost;
-    private State MakeObsidianRobot(Blueprint blueprint, State state) => new State(state.OreRobots, state.ClayRobots, state.ObsidianRobots+1, state.GeodeRobots, state.Ore-blueprint.ObsidianRobot.OreCost, state.Clay-blueprint.ObsidianRobot.ClayCost, state.Obsidian, state.Geode, state.Time);
+    private State MakeObsidianRobot(Blueprint blueprint, State state) => new(state.OreRobots, state.ClayRobots, state.ObsidianRobots+1, state.GeodeRobots, state.Ore-blueprint.ObsidianRobot.OreCost, state.Clay-blueprint.ObsidianRobot.ClayCost, state.Obsidian, state.Geode, state.Time);
 
     private bool CanMakeClayRobot(Blueprint blueprint, State state) => state.Ore >= blueprint.ClayRobotOreCost && state.ClayRobots < blueprint.ObsidianRobot.ClayCost;
-    private State MakeClayRobot(Blueprint blueprint, State state) => new State(state.OreRobots, state.ClayRobots+1, state.ObsidianRobots, state.GeodeRobots, state.Ore-blueprint.ClayRobotOreCost, state.Clay, state.Obsidian, state.Geode, state.Time);
+    private State MakeClayRobot(Blueprint blueprint, State state) => new(state.OreRobots, state.ClayRobots+1, state.ObsidianRobots, state.GeodeRobots, state.Ore-blueprint.ClayRobotOreCost, state.Clay, state.Obsidian, state.Geode, state.Time);
 
     private bool CanMakeOreRobot(Blueprint blueprint, State state) => state.Ore >= blueprint.OreRobotOreCost && state.OreRobots < MaxRequiredOre(blueprint);
-    private State MakeOreRobot(Blueprint blueprint, State state) => new State(state.OreRobots+1, state.ClayRobots, state.ObsidianRobots, state.GeodeRobots, state.Ore-blueprint.OreRobotOreCost, state.Clay, state.Obsidian, state.Geode, state.Time);
+    private State MakeOreRobot(Blueprint blueprint, State state) => new(state.OreRobots+1, state.ClayRobots, state.ObsidianRobots, state.GeodeRobots, state.Ore-blueprint.OreRobotOreCost, state.Clay, state.Obsidian, state.Geode, state.Time);
 
     private int MaxRequiredOre(Blueprint blueprint) => Math.Max(blueprint.OreRobotOreCost, Math.Max(blueprint.ClayRobotOreCost, Math.Max(blueprint.ObsidianRobot.OreCost, blueprint.GeodeRobot.OreCost)));
 

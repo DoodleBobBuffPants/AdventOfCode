@@ -34,7 +34,7 @@ public class Day21 : IDay
         return Evaluate(expression.Operation!.Value, Evaluate(expression.LeftKey!, expressions), Evaluate(expression.RightKey!, expressions));
     }
 
-    private long Evaluate(Operation operation, long left, long right) => operation switch { Operation.Add => left + right, Operation.Subtract => left - right, Operation.Multiply => left * right, Operation.Divide => left / right, };
+    private long Evaluate(Operation operation, long left, long right) => operation switch { Operation.Add => left + right, Operation.Subtract => left - right, Operation.Multiply => left * right, Operation.Divide => left / right };
 
     private long ApplyInverse(long value, string key, Dictionary<string, Expression> expressions)
     {
@@ -45,7 +45,7 @@ public class Day21 : IDay
             Operation.Add => Evaluate(expression.LeftKey!, expressions) - value,
             Operation.Subtract => value - Evaluate(expression.LeftKey!, expressions),
             Operation.Multiply => Evaluate(expression.LeftKey!, expressions) / value,
-            Operation.Divide => value / Evaluate(expression.LeftKey!, expressions),
+            Operation.Divide => value / Evaluate(expression.LeftKey!, expressions)
         };
     }
 
@@ -58,7 +58,7 @@ public class Day21 : IDay
             Operation.Add => $"({ToString(expression.LeftKey!, expressions)} + {ToString(expression.RightKey!, expressions)})",
             Operation.Subtract => $"({ToString(expression.LeftKey!, expressions)} - {ToString(expression.RightKey!, expressions)})",
             Operation.Multiply => $"({ToString(expression.LeftKey!, expressions)} * {ToString(expression.RightKey!, expressions)})",
-            Operation.Divide => $"({ToString(expression.LeftKey!, expressions)} / {ToString(expression.RightKey!, expressions)})",
+            Operation.Divide => $"({ToString(expression.LeftKey!, expressions)} / {ToString(expression.RightKey!, expressions)})"
         };
     }
 

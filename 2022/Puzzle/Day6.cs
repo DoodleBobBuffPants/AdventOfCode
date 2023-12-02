@@ -13,7 +13,7 @@ public class Day6 : IDay
         for (var i = 0; i < text.Length-bufferSize; i++)
         {
             for (var j = 0; j < bufferSize; j++) buffer.Add(text[i+j]);
-            if (buffer.Count() == bufferSize) return i+bufferSize;
+            if (buffer.Count == bufferSize) return i+bufferSize;
             buffer.Clear();
         }
         return -1;

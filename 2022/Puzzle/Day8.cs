@@ -9,8 +9,8 @@ public class Day8 : IDay
     private int VisibleTrees()
     {
         var grid = IDay.ReadResource(8).Select(x => x.Select(y => int.Parse(y.ToString())).ToList()).ToList();
-        var count = (2 * grid.Count()) + (2 * grid[0].Count()) - 4;
-        for (var i = 1; i < grid.Count() - 1; i++) for (var j = 1; j < grid[0].Count() - 1; j++) if (IsVisible(grid, i, j)) count++;
+        var count = 2 * grid.Count + 2 * grid[0].Count - 4;
+        for (var i = 1; i < grid.Count - 1; i++) for (var j = 1; j < grid[0].Count - 1; j++) if (IsVisible(grid, i, j)) count++;
         return count;
     }
 
@@ -18,9 +18,9 @@ public class Day8 : IDay
     {
         var grid = IDay.ReadResource(8).Select(x => x.Select(y => int.Parse(y.ToString())).ToList()).ToList();
         var max = 0;
-        for (var i = 1; i < grid.Count() - 1; i++)
+        for (var i = 1; i < grid.Count - 1; i++)
         {
-            for (var j = 1; j < grid[0].Count() - 1; j++)
+            for (var j = 1; j < grid[0].Count - 1; j++)
             {
                 var score = ScenicScore(grid, i, j);
                 if (score > max) max = score;
@@ -37,13 +37,13 @@ public class Day8 : IDay
         for (var x = row-1; x >= 0; x--) if (grid[x][col] >= current) top = false;
 
         var bottom = true;
-        for (var x = row+1; x < grid.Count(); x++) if (grid[x][col] >= current) bottom = false;
+        for (var x = row+1; x < grid.Count; x++) if (grid[x][col] >= current) bottom = false;
 
         var left = true;
         for (var x = col-1; x >= 0; x--) if (grid[row][x] >= current) left = false;
 
         var right = true;
-        for (var x = col+1; x < grid[0].Count(); x++) if (grid[row][x] >= current) right = false;
+        for (var x = col+1; x < grid[0].Count; x++) if (grid[row][x] >= current) right = false;
 
         return top || bottom || left || right;
     }
@@ -60,7 +60,7 @@ public class Day8 : IDay
         }
 
         var bottom = 0;
-        for (var x = row+1; x < grid.Count(); x++)
+        for (var x = row+1; x < grid.Count; x++)
         {
             bottom++;
             if (grid[x][col] >= current) break;
@@ -74,7 +74,7 @@ public class Day8 : IDay
         }
 
         var right = 0;
-        for (var x = col+1; x < grid[0].Count(); x++)
+        for (var x = col+1; x < grid[0].Count; x++)
         {
             right++;
             if (grid[row][x] >= current) break;

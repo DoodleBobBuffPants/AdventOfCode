@@ -16,7 +16,7 @@ public class Day1 : IDay
             if (string.IsNullOrWhiteSpace(line))
             {
                 counts.Add(current);
-                if (counts.Count() > 3) counts.Remove(counts.Min);
+                if (counts.Count > 3) counts.Remove(counts.Min);
                 current = 0;
             }
             else

@@ -28,7 +28,7 @@ public class Day18 : IDay
         var min = Math.Min(positions.Min(x => x.Item1), Math.Min(positions.Min(x => x.Item2), positions.Min(x => x.Item3))) - 1;
         var max = Math.Max(positions.Max(x => x.Item1), Math.Max(positions.Max(x => x.Item2), positions.Max(x => x.Item3))) + 1;
         var visited = new HashSet<(int, int, int)>();
-        var frontier = new HashSet<(int, int, int)>() { (min, min, min) };
+        var frontier = new HashSet<(int, int, int)> { (min, min, min) };
         while (frontier.Any())
         {
             var current = frontier.First();
@@ -46,7 +46,7 @@ public class Day18 : IDay
     private HashSet<(int, int, int)> GetNeighbours((int, int, int) position, int min = int.MinValue, int max = int.MaxValue)
     {
         var (x, y, z) = position;
-        var result = new HashSet<(int x, int y, int z)>() { (x-1, y, z), (x+1, y, z), (x, y-1, z), (x, y+1, z), (x, y, z-1), (x, y, z+1) };
+        var result = new HashSet<(int x, int y, int z)> { (x-1, y, z), (x+1, y, z), (x, y-1, z), (x, y+1, z), (x, y, z-1), (x, y, z+1) };
         return result.Where(p => p.x >= min && p.x <= max && p.y >= min && p.y <= max && p.z >= min && p.z <= max).ToHashSet();
     }
 }

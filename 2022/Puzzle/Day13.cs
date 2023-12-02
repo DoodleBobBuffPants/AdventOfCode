@@ -10,7 +10,7 @@ public class Day13 : IDay
     {
         var packets = IDay.ReadResource(13);
         var result = 0;
-        for (var i = 0; i < packets.Length; i += 3) if (Compare(Parse(packets[i]).list, Parse(packets[i+1]).list) < 0) result += (i / 3) + 1;
+        for (var i = 0; i < packets.Length; i += 3) if (Compare(Parse(packets[i]).list, Parse(packets[i+1]).list) < 0) result += i / 3 + 1;
         return result;
     }
 
@@ -50,11 +50,11 @@ public class Day13 : IDay
             }
             else if (aHead is int aHeadExclusiveInt && bHead is List<object> bHeadExclusiveList)
             {
-                comparison = Compare(new List<object>() { aHeadExclusiveInt }, bHeadExclusiveList);
+                comparison = Compare(new List<object> { aHeadExclusiveInt }, bHeadExclusiveList);
             }
             else if (aHead is List<object> aHeadExclusiveList && bHead is int bHeadExclusiveInt)
             {
-                comparison = Compare(aHeadExclusiveList, new List<object>() { bHeadExclusiveInt });
+                comparison = Compare(aHeadExclusiveList, new List<object> { bHeadExclusiveInt });
             }
             if (comparison != 0) return comparison;
         }
